@@ -7,8 +7,8 @@
  * MovieList is an app where the user can see an initial list of the
  * top 20 movies. The user can scroll through this list of movies as
  * well as add movies, and an option to save. The add option sends the
- * user to a second activty where there are four EditTexts to enter the
- * details of the movie and then a button to sumbit it. The user can
+ * user to a second activity where there are four EditTexts to enter the
+ * details of the movie and then a button to submit it. The user can
  * also use the a swipe right action to remove any movie from the list.
  */
 
@@ -17,6 +17,8 @@ package example.com.movielist
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -81,8 +83,39 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setAdapter(movieAdapter)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.sorting_options, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d("MOVIELIST", "options menu")
+        when (item.itemId) {
+            R.id.ratingSort -> {
+                Log.d("MOVIELIST", "onOptions: rating sort")
+                movieList?.sortBy{ it?.rating }
+                movieAdapter.notifyDataSetChanged()
+            }
+            R.id.yearSort -> {
+                Log.d("MOVIELIST", "onOptions: year sort")
+                movieList?.sortBy{ it?.year }
+                movieAdapter.notifyDataSetChanged()
+            }
+            R.id.genreSort -> {
+                Log.d("MOVIELIST", "onOptions: genre sort")
+                movieList?.sortBy{ it?.genre }
+                movieAdapter.notifyDataSetChanged()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     fun startSecond(v: View) {
         startForResult.launch(Intent(this, AddMovieActivity::class.java))
+    }
+
+    fun saveList(v: View) {
+        writeFile()
     }
 
     //Function readFile - reads the file MOVIELIST.csv - populating movie list
@@ -105,7 +138,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun writeFile(v: View) {
+    fun writeFile() {
         Log.d("FileIO", "Entered writeFile()")
         try {
             val f = File(myPlace + "/MOVIELIST.csv")

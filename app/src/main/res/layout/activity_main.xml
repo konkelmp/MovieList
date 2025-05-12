@@ -36,7 +36,7 @@
             android:layout_margin="15dp"
             android:layout_weight="1"
             android:text="SAVE LIST"
-            android:onClick="writeFile"/>
+            android:onClick="saveList"/>
     </LinearLayout>
     
     <androidx.recyclerview.widget.RecyclerView
