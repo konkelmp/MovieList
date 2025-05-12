@@ -4,4 +4,7 @@ class Movie(val title : String?, val year : String?, val genre : String?, val ra
     override fun toString(): String {
         return "Title = " + title + "Year = " + year + "Genre = " + genre + "Rating = " + rating
     }
+    fun convertOut() : String {
+        return "$title,$year,$genre,$rating"
+    }
 }

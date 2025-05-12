@@ -87,12 +87,14 @@ class MainActivity : AppCompatActivity() {
 
     //Function readFile - reads the file MOVIELIST.csv - populating movie list
     fun readFile() {
+        Log.d("FileIO", "Entered readFile()")
         try {
             val f = File(myPlace + "/MOVIELIST.csv")
             val myReader = Scanner(f)
             while (myReader.hasNextLine()) {
                 val data = myReader.nextLine()
                 val parts = data.split(",")
+                Log.d("FileIO", "Reached movieList.add()")
                 movieList.add(Movie(parts[0], parts[1], parts[2], parts[3]))
             }
             myReader.close()
@@ -103,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun writeFile() {
+    fun writeFile(v: View) {
         Log.d("FileIO", "Entered writeFile()")
         try {
             val f = File(myPlace + "/MOVIELIST.csv")
@@ -121,7 +123,7 @@ class MainActivity : AppCompatActivity() {
             for (m : Movie? in movieList) {
                 val s = m.toString()
                 Log.d("FileIO", s)
-                fw.write(s + "\n")
+                fw.write(m?.convertOut() + "\n")
             }
             fw.flush()
             fw.close()
