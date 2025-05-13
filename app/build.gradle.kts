@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "example.com.movielist"
+    namespace = "com.example.movielist"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "example.com.movielist"
+        applicationId = "com.example.movielist"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

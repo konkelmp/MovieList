@@ -1,4 +1,4 @@
-package example.com.movielist
+package com.example.movielist
 
 import android.app.Activity
 import android.content.Intent

@@ -12,7 +12,7 @@
  * also use the a swipe right action to remove any movie from the list.
  */
 
-package example.com.movielist
+package com.example.movielist
 
 import android.content.Intent
 import android.os.Bundle
