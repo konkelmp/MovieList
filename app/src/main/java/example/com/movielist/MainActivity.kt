@@ -123,6 +123,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("FileIO", "Entered readFile()")
         try {
             val f = File(myPlace + "/MOVIELIST.csv")
+            f.createNewFile()
             val myReader = Scanner(f)
             while (myReader.hasNextLine()) {
                 val data = myReader.nextLine()
