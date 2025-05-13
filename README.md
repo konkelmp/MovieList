@@ -1,4 +1,3 @@
-##MovieList
 MovieList is an app where the user can see an initial list of the
 top 20 movies. The user can scroll through this list of movies as
 well as add movies, and an option to save. The add option sends the
